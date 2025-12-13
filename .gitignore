@@ -1,0 +1,8 @@
+.env
+node_modules/
+cypress/reports/*
+cypress/screenshots/*
+cypress/videos/*
+cypress/downloads/*
+cypress/fixtures/commonState.json
+runner-results/

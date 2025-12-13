@@ -1,0 +1,39 @@
+{
+  "name": "cypress_e2e_my_blog",
+  "version": "1.0.0",
+  "description": "",
+  "license": "ISC",
+  "author": "tarlan ziyadov",
+  "type": "commonjs",
+  "main": "cypress.config.js",
+  "scripts": {
+    "script": "npx cypress run",
+    "parallel": "cypress-parallel -s script -t 15 -d ./cypress/e2e/contexts -a --e2e --config-file cypress/configs/cypress.config.js",
+    "test": "npm run parallel || npm run posttest && npm run notifySlack",
+    "clean:reports": "rimraf --glob cypress/reports/mocha/* && rimraf --glob cypress/reports/mochareports/* && rimraf --glob cypress/downloads/*",
+    "pretest": "npm run clean:reports && npx browserslist@latest --update-db && (npm run initCommonState || echo 'initCommonState failed, continuing...')",
+    "combine-reports": "mkdirp ./cypress/reports/mochareports && mochawesome-merge ./cypress/reports/mocha/* > ./cypress/reports/mochareports/report.json",
+    "generate-report": "marge ./cypress/reports/mochareports/report.json -f report -o cypress/reports/mochareports",
+    "posttest": "npm run combine-reports && npm run generate-report",
+    "initCommonState": "npx cypress run --spec cypress/e2e/runBeforeAll/index.spec.js",
+    "notifySlack": "npx cypress run --spec cypress/e2e/runAfterAll/index.spec.js"
+  },
+  "dependencies": {
+    "baseline-browser-mapping": "^2.9.7",
+    "caniuse-lite": "^1.0.30001760",
+    "cypress-parallel": "^0.15.0",
+    "dotenv": "^16.6.1",
+    "mkdirp": "^2.1.6",
+    "mochawesome": "^7.1.3",
+    "mochawesome-merge": "^4.3.0",
+    "mochawesome-report-generator": "^6.2.0",
+    "rimraf": "^6.1.2"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.39.2",
+    "cypress": "^15.7.1",
+    "eslint": "^9.39.2",
+    "eslint-plugin-cypress": "^5.2.0",
+    "globals": "^16.5.0"
+  }
+}

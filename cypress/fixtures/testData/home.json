@@ -1,0 +1,18 @@
+{
+  "home": {
+    "header": "Welcome",
+    "text": "Here you will find posts about Tech and Development, including topics on QA (Quality Assurance), tools, tips, and best practices."
+  },
+  "posts": {
+    "header": "Posts",
+    "article_1": "HOW TO BUILD CONTEXT DRIVEN END-TO-END TESTS",
+    "article_2": "USE POLLING TO REDUCE FLAKINESS IN E2E TESTS",
+    "article_3": "TIME TO TALK ABOUT FLAKY TESTS",
+    "article_4": "POWER OF SLACK APPS IN AUTOMATION",
+    "article_5": "THE POWER OF PAD REPOSITORY",
+    "article_6": "WHAT IS SITEMAP AND HOW IT'S WORKS?",
+    "article_7": "CYPRESS IO OR SELENIUM WEBDRIVER?",
+    "article_8": "TEST AUTOMATION LAYERS",
+    "article_9": "WHAT IS TEST AUTOMATION"
+  }
+}
