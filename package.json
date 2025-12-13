@@ -8,7 +8,7 @@
   "main": "cypress.config.js",
   "scripts": {
     "script": "npx cypress run",
-    "parallel": "cypress-parallel -s script -t 15 -d ./cypress/e2e/contexts -a --e2e --config-file cypress/configs/cypress.config.js",
+    "parallel": "cypress-parallel -s script -t 10 -d ./cypress/e2e/contexts -a --e2e --config-file cypress/configs/cypress.config.js",
     "test": "npm run parallel || npm run posttest && npm run notifySlack",
     "clean:reports": "rimraf --glob cypress/reports/mocha/* && rimraf --glob cypress/reports/mochareports/* && rimraf --glob cypress/downloads/*",
     "pretest": "npm run clean:reports && npx browserslist@latest --update-db && (npm run initCommonState || echo 'initCommonState failed, continuing...')",
