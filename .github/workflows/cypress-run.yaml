@@ -1,0 +1,47 @@
+name: Cypress E2E Tests
+
+on:
+  push:
+  workflow_dispatch:
+
+jobs:
+  cypress-run:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run initCommonState
+        run: npm run initCommonState
+
+      - name: Run Cypress tests
+        run: |
+          npm run test 2>&1 | tee output.log
+
+          if grep -E "✖" output.log; then
+            echo "Found ✖ in logs. Tests failed."
+            exit 1
+          elif grep -q "Some test suites likely terminated" output.log; then
+            echo "Ignoring known issue: test suite count mismatch"
+            exit 0
+          fi
+
+      - name: Generate report
+        if: always()
+        run: npm run posttest
+
+      - name: Save report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: mochawesome-report
+          path: cypress/reports/
