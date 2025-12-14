@@ -31,14 +31,14 @@ jobs:
             git push -u origin main
           fi
 
-      - name: Checkout Cypress_e2e_TarlanZiyadov (Cypress results)
+      - name: Checkout Cypress source repo
         uses: actions/checkout@v4
         with:
           repository: TarlanZiyadov/Cypress_e2e_TarlanZiyadov
           token: ${{ secrets.CYPRESS_E2E_TARLANZIYADOV_TOKEN }}
-          path: Cypress_e2e_TarlanZiyadov
+          path: source-repo
 
-      - name: Checkout Cypress_e2e_TarlanZiyadov_Report
+      - name: Checkout target repo
         uses: actions/checkout@v4
         with:
           repository: TarlanZiyadov/Cypress_e2e_TarlanZiyadov_Report
@@ -49,11 +49,11 @@ jobs:
         run: |
           ls -la ../Cypress_e2e_TarlanZiyadov
 
-      - name: Copy report to repo root
+      - name: Copy Cypress report to target repo
         run: |
           cd Cypress_e2e_TarlanZiyadov_Report
           rm -rf *
-          cp -r ../Cypress_e2e_TarlanZiyadov/cypress/reports/mochareports/* .
+          cp -r ../source-repo/cypress/reports/mochareports/* .
 
       - name: Commit and push
         run: |
