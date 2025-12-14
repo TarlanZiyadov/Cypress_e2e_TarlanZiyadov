@@ -31,13 +31,6 @@ jobs:
             git push -u origin main
           fi
 
-      - name: Checkout Cypress_e2e_TarlanZiyadov_Report
-        uses: actions/checkout@v4
-        with:
-          repository: TarlanZiyadov/Cypress_e2e_TarlanZiyadov_Report
-          token: ${{ secrets.CYPRESS_E2E_TARLANZIYADOV_TOKEN }}
-          path: Cypress_e2e_TarlanZiyadov_Report
-
       - name: Checkout Cypress_e2e_TarlanZiyadov (Cypress results)
         uses: actions/checkout@v4
         with:
@@ -45,15 +38,22 @@ jobs:
           token: ${{ secrets.CYPRESS_E2E_TARLANZIYADOV_TOKEN }}
           path: Cypress_e2e_TarlanZiyadov
 
+      - name: Checkout Cypress_e2e_TarlanZiyadov_Report
+        uses: actions/checkout@v4
+        with:
+          repository: TarlanZiyadov/Cypress_e2e_TarlanZiyadov_Report
+          token: ${{ secrets.CYPRESS_E2E_TARLANZIYADOV_TOKEN }}
+          path: Cypress_e2e_TarlanZiyadov_Report
+
       - name: Debug artifact folder
         run: |
-          ls -la ../report
+          ls -la ../Cypress_e2e_TarlanZiyadov
 
       - name: Copy report to repo root
         run: |
           cd Cypress_e2e_TarlanZiyadov_Report
           rm -rf *
-          cp -r ../report/* .
+          cp -r ../Cypress_e2e_TarlanZiyadov/cypress/reports/* .
 
       - name: Commit and push
         run: |
