@@ -4,6 +4,8 @@
 
 🌐 Detailed description for test framework structure can be found in my blog posts: [TarlanZiyadov](https://tarlanziyadov.github.io)
 
+---
+
 ## Steps
 
 - Create separate github repository for report page.
@@ -16,9 +18,13 @@
 
 - Install all packages by running npm install
 
-- Install Eslint from Extensions in VScode and enable it
+- Install Eslint from Extensions in VScode and enable it. (Reload VScode window Ctrl + Shift + P > Reload window)
+
+---
 
 ## Run tests
+
+- Test runs parallel with cypress-parallel in headless mode.
 
 ### Terminal
 
