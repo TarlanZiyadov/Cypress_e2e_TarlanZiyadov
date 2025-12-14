@@ -36,6 +36,7 @@ jobs:
             echo "Ignoring known issue: test suite count mismatch"
             exit 0
           fi
+        #if want to fail actions then remove this step
         continue-on-error: true
 
       - name: Generate report
