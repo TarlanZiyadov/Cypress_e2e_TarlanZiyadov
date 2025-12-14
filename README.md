@@ -10,7 +10,7 @@
 
 - Create separate github repository for report page.
 
-- Github workflow requires personal access token. It can be generated via your github account settings -> Developers settings -> Fine-grained tokens with read and write access to both this repository and report repository. After add it as repository secrets.
+- Github workflows requires personal access token. It can be generated via your github account settings -> Developers settings -> Fine-grained tokens with read and write access to both this repository and report repository. After add it as repository secrets.
 
 - Go through github workflows file and change all repo path to your new repositories.
 
@@ -33,3 +33,7 @@
 ### UI
 
 - npx cypress open
+
+### Auto trigger on deploy
+
+- Test as well triggered automatically after main product deployed 🌐 [TarlanZiyadov](https://tarlanziyadov.github.io) from here: https://github.com/TarlanZiyadov/tarlanziyadov.github.io/blob/9655ce5280033ac0fdfe2480738b1d8533e90f74/.github/workflows/trigger-e2e-tests.yaml. Copy and add this workflow to the main project where e2e tests will run checks.
