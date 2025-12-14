@@ -1,0 +1,33 @@
+publish-report:
+  needs: cypress-run
+  runs-on: ubuntu-latest
+
+  steps:
+    - name: Download artifact
+      uses: actions/download-artifact@v4
+      with:
+        name: mochawesome-report
+        path: report
+
+    - name: Checkout Cypress_e2e_TarlanZiyadov_Report
+      uses: actions/checkout@v4
+      with:
+        repository: TarlanZiyadov/Cypress_e2e_TarlanZiyadov_Report
+        token: ${{ secrets.CYPRESS_E2E_TARLANZIYADOV_TOKEN }}
+        path: Cypress_e2e_TarlanZiyadov_Report
+
+    - name: Copy report Cypress_e2e_TarlanZiyadov_Report
+      run: |
+        rm -rf TarlanZiyadov/Cypress_e2e_TarlanZiyadov_Report
+        mkdir -p TarlanZiyadov/Cypress_e2e_TarlanZiyadov_Report
+        cp -r report/* TarlanZiyadov/Cypress_e2e_TarlanZiyadov_Report/
+
+    - name: Commit and push
+      run: |
+        cd Cypress_e2e_TarlanZiyadov_Report
+        git config user.name "github-actions"
+        git config user.email "github-actions@github.com"
+        date | base64 > random
+        git add .
+        git commit -m "Update Cypress report from $GITHUB_SHA" || echo "No changes"
+        git push
