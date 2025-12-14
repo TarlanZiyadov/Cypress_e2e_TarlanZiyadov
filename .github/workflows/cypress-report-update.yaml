@@ -45,6 +45,10 @@ jobs:
           token: ${{ secrets.CYPRESS_E2E_TARLANZIYADOV_TOKEN }}
           path: Cypress_e2e_TarlanZiyadov
 
+      - name: Debug artifact folder
+        run: |
+          ls -la ../report
+
       - name: Copy report to repo root
         run: |
           cd Cypress_e2e_TarlanZiyadov_Report
