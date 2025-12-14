@@ -18,9 +18,9 @@ publish-report:
 
     - name: Copy report Cypress_e2e_TarlanZiyadov_Report
       run: |
-        rm -rf TarlanZiyadov/Cypress_e2e_TarlanZiyadov_Report
-        mkdir -p TarlanZiyadov/Cypress_e2e_TarlanZiyadov_Report
-        cp -r report/* TarlanZiyadov/Cypress_e2e_TarlanZiyadov_Report/
+        cd Cypress_e2e_TarlanZiyadov_Report
+        rm -rf *
+        cp -r ../report/mochareports/* .
 
     - name: Commit and push
       run: |
