@@ -1,33 +1,41 @@
-publish-report:
-  needs: cypress-run
-  runs-on: ubuntu-latest
+name: Publish Cypress Report
 
-  steps:
-    - name: Download artifact
-      uses: actions/download-artifact@v4
-      with:
-        name: mochawesome-report
-        path: report
+on:
+  workflow_run:
+    workflows: ["Cypress E2E Tests"]
+    types:
+      - completed
 
-    - name: Checkout Cypress_e2e_TarlanZiyadov_Report
-      uses: actions/checkout@v4
-      with:
-        repository: TarlanZiyadov/Cypress_e2e_TarlanZiyadov_Report
-        token: ${{ secrets.CYPRESS_E2E_TARLANZIYADOV_TOKEN }}
-        path: Cypress_e2e_TarlanZiyadov_Report
+jobs:
+  publish-report:
+    runs-on: ubuntu-latest
 
-    - name: Copy report Cypress_e2e_TarlanZiyadov_Report
-      run: |
-        cd Cypress_e2e_TarlanZiyadov_Report
-        rm -rf *
-        cp -r ../report/mochareports/* .
+    steps:
+      - name: Checkout target repo
+        uses: actions/checkout@v4
+        with:
+          repository: TarlanZiyadov/Cypress_e2e_TarlanZiyadov_Report
+          token: ${{ secrets.CYPRESS_E2E_TARLANZIYADOV_TOKEN }}
+          path: Cypress_e2e_TarlanZiyadov_Report
 
-    - name: Commit and push
-      run: |
-        cd Cypress_e2e_TarlanZiyadov_Report
-        git config user.name "github-actions"
-        git config user.email "github-actions@github.com"
-        date | base64 > random
-        git add .
-        git commit -m "Update Cypress report from $GITHUB_SHA" || echo "No changes"
-        git push
+      - name: Checkout source repo (Cypress results)
+        uses: actions/checkout@v4
+        with:
+          repository: TarlanZiyadov/Cypress_e2e_TarlanZiyadov
+          token: ${{ secrets.CYPRESS_E2E_TARLANZIYADOV_TOKEN }}
+          path: Cypress_e2e_TarlanZiyadov
+
+      - name: Copy report to repo root
+        run: |
+          cd Cypress_e2e_TarlanZiyadov_Report
+          rm -rf *
+          cp -r ../Cypress_e2e_TarlanZiyadov/cypress/reports/* .
+
+      - name: Commit and push
+        run: |
+          cd Cypress_e2e_TarlanZiyadov_Report
+          git config user.name "github-actions"
+          git config user.email "github-actions@github.com"
+          git add .
+          git commit -m "Update Cypress report from latest run" || echo "No changes"
+          git push
