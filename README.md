@@ -2,7 +2,7 @@
 
 📊 Demo report page: [Mochawesome](https://tarlanziyadov.github.io/Cypress_e2e_TarlanZiyadov_Report/report.html)
 
-🌐 Detailed description for test framework structure can be found in my blog posts: [TarlanZiyadov](https://tarlanziyadov.github.io/about/)
+🌐 Detailed description for test framework structure can be found in my blog posts: [TarlanZiyadov](https://tarlanziyadov.github.io)
 
 ## Steps
 
