@@ -11,6 +11,19 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Init empty repo if needed
+        run: |
+          if ! git ls-remote --heads https://github.com/TarlanZiyadov/Cypress_e2e_TarlanZiyadov_Report.git main; then
+            echo "Branch main does not exist. Initializing empty repo..."
+            mkdir -p Cypress_e2e_TarlanZiyadov_Report
+            cd Cypress_e2e_TarlanZiyadov_Report
+            git init
+            git remote add origin https://github.com/TarlanZiyadov/Cypress_e2e_TarlanZiyadov_Report.git
+            git checkout -b main
+          else
+            echo "Branch main exists. Skipping init."
+          fi
+
       - name: Checkout target repo
         uses: actions/checkout@v4
         with:
