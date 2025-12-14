@@ -52,24 +52,24 @@ jobs:
 
     steps:
       - name: Init empty repo if needed
-          run: |
-            if git ls-remote https://github.com/TarlanZiyadov/Cypress_e2e_TarlanZiyadov_Report.git | grep -q refs/heads/main; then
-              echo "Branch main exists. Skipping init."
-            else
-              echo "Branch main does not exist. Initializing empty repo..."
-              mkdir -p Cypress_e2e_TarlanZiyadov_Report
-              cd Cypress_e2e_TarlanZiyadov_Report
-              git init
-              git remote add origin https://github.com/TarlanZiyadov/Cypress_e2e_TarlanZiyadov_Report.git
-              git checkout -b main
-              git config user.name "github-actions"
-              git config user.email "github-actions@github.com"
-              date | base64 > random
-              git add .
-              git commit -m"init repo"
-              git remote set-url origin https://x-access-token:${{ secrets.CYPRESS_E2E_TARLANZIYADOV_TOKEN }}@github.com/TarlanZiyadov/Cypress_e2e_TarlanZiyadov_Report.git
-              git push -u origin main
-            fi
+        run: |
+          if git ls-remote https://github.com/TarlanZiyadov/Cypress_e2e_TarlanZiyadov_Report.git | grep -q refs/heads/main; then
+            echo "Branch main exists. Skipping init."
+          else
+            echo "Branch main does not exist. Initializing empty repo..."
+            mkdir -p Cypress_e2e_TarlanZiyadov_Report
+            cd Cypress_e2e_TarlanZiyadov_Report
+            git init
+            git remote add origin https://github.com/TarlanZiyadov/Cypress_e2e_TarlanZiyadov_Report.git
+            git checkout -b main
+            git config user.name "github-actions"
+            git config user.email "github-actions@github.com"
+            date | base64 > random
+            git add .
+            git commit -m"init repo"
+            git remote set-url origin https://x-access-token:${{ secrets.CYPRESS_E2E_TARLANZIYADOV_TOKEN }}@github.com/TarlanZiyadov/Cypress_e2e_TarlanZiyadov_Report.git
+            git push -u origin main
+          fi
 
       - name: Checkout target repo
         uses: actions/checkout@v4
