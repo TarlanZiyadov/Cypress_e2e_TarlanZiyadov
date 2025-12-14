@@ -51,6 +51,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      #this step is added to skip manual work when creating a new report repository
       - name: Init empty repo if needed
         run: |
           if git ls-remote https://github.com/TarlanZiyadov/Cypress_e2e_TarlanZiyadov_Report.git | grep -q refs/heads/main; then
@@ -88,13 +89,15 @@ jobs:
         run: |
           cd Cypress_e2e_TarlanZiyadov_Report
           rm -rf *
-          cp -r ../report/* .
+          cp -r ../report/mochareports/* .
 
       - name: Commit and push
+        # date | base64 > random is added to be able to update repository always with latest result if files not channged
         run: |
           cd Cypress_e2e_TarlanZiyadov_Report
           git config user.name "github-actions"
           git config user.email "github-actions@github.com"
+          date | base64 > random
           git add .
           git commit -m "Update Cypress report from $GITHUB_SHA" || echo "No changes"
           git push
