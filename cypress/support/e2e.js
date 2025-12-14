@@ -96,6 +96,9 @@ afterEach(function() {
   }
 });
 
+/*
+attach screenshots to the mochawesome report page
+*/
 Cypress.on('test:after:run', (test) => {
 
   if (test.state === 'failed') {

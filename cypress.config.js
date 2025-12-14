@@ -64,11 +64,19 @@ module.exports = defineConfig({
         ...reporterOptions
       };
       
+      /*
+      combine both dotenv and cypress env variables to 
+      make them avaialable via Cypress.env()
+      */
       config.env = {
         ...process.env,
         ...config.env
       };
 
+      /*
+      store renamed screenshot in assets folder under reports/mochareports to avoid to long file naming issues. 
+      Saved screenshot attached to the report page in the e2e.js file.
+      */
       on('after:screenshot', (details) => {
 
         const filePathParts = details.path.split('--');
@@ -132,7 +140,7 @@ module.exports = defineConfig({
         },
 
         /*
-        read json file data. wanted for parallel run to avoid memory leak
+        read json file data for parallel run to avoid memory leak
         */
         readJsonFile: (file) => new Promise((resolve, reject) => {
           
