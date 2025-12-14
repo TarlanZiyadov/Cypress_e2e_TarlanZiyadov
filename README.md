@@ -36,4 +36,4 @@
 
 ### Auto trigger on deploy
 
-- Test as well triggered automatically after main product deployed 🌐 [TarlanZiyadov](https://tarlanziyadov.github.io) from here: https://github.com/TarlanZiyadov/tarlanziyadov.github.io/blob/9655ce5280033ac0fdfe2480738b1d8533e90f74/.github/workflows/trigger-e2e-tests.yaml. Copy and add this workflow to the main project where e2e tests will run checks.
+- Test as well triggered automatically after main product 🌐 [TarlanZiyadov](https://tarlanziyadov.github.io) deployed from here: https://github.com/TarlanZiyadov/tarlanziyadov.github.io/blob/9655ce5280033ac0fdfe2480738b1d8533e90f74/.github/workflows/trigger-e2e-tests.yaml. Copy and add this workflow to the main project where e2e tests will run checks.
