@@ -22,6 +22,10 @@ jobs:
             git init
             git remote add origin https://github.com/TarlanZiyadov/Cypress_e2e_TarlanZiyadov_Report.git
             git checkout -b main
+            date | base64 > random
+            git add .
+            git commit -m"init repo"
+            git push -u origin main
           fi
 
       - name: Checkout target repo
