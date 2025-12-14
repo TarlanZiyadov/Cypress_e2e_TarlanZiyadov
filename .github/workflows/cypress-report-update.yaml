@@ -27,6 +27,7 @@ jobs:
             date | base64 > random
             git add .
             git commit -m"init repo"
+            git remote set-url origin https://x-access-token:${{ secrets.CYPRESS_E2E_TARLANZIYADOV_TOKEN }}@github.com/TarlanZiyadov/Cypress_e2e_TarlanZiyadov_Report.git
             git push -u origin main
           fi
 
