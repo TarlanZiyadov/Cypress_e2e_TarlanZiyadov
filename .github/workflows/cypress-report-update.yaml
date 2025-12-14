@@ -53,7 +53,7 @@ jobs:
         run: |
           cd Cypress_e2e_TarlanZiyadov_Report
           rm -rf *
-          cp -r ../Cypress_e2e_TarlanZiyadov/cypress/reports/* .
+          cp -r ../Cypress_e2e_TarlanZiyadov/cypress/reports/mochareports/* .
 
       - name: Commit and push
         run: |
