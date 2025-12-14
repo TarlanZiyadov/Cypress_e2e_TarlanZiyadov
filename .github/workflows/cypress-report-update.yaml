@@ -49,7 +49,7 @@ jobs:
         run: |
           cd Cypress_e2e_TarlanZiyadov_Report
           rm -rf *
-          cp -r ../Cypress_e2e_TarlanZiyadov/cypress/report/* .
+          cp -r ../report/* .
 
       - name: Commit and push
         run: |
